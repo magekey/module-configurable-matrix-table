@@ -1,0 +1,54 @@
+// /**
+//  * Copyright © MageKey. All rights reserved.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@mgk-cmt__table__color: @color-gray-light3;
+@mgk-cmt__header__font-weight: @font-weight__semibold;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .mgk-configurable-matrix-table {
+        table {
+            border-collapse: collapse;
+            border: 1px solid @mgk-cmt__table__color;
+
+            tr {
+                th,
+                td {
+                    text-align: center;
+                }
+                th {
+                    &.title-cell {
+                        background: linear-gradient(to top right, transparent 49.5%, @mgk-cmt__table__color 49.5%, @mgk-cmt__table__color 50.5%, transparent 50.5%);
+                        border-right: 1px solid @mgk-cmt__table__color;
+
+                        .x-label {
+                            margin-left: 1em;
+                            text-align: right;
+                        }
+                        .y-label {
+                            margin-right: 1em;
+                            text-align: left;
+                        }
+                    }
+                }
+                .y-label-cell {
+                    border-bottom: 1px solid @mgk-cmt__table__color;
+                    font-weight: @mgk-cmt__header__font-weight;
+                }
+                .x-label-cell {
+                    border-right: 1px solid @mgk-cmt__table__color;
+                    font-weight: @mgk-cmt__header__font-weight;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}

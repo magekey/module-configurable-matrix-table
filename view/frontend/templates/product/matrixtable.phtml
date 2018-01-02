@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © MageKey. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * @var $block \MageKey\ConfigurableMatrixTable\Block\Product\MatrixTable
+ */
+?>
+<?php if ($this->hasMatrixData()) : ?>
+<?php $_priceHelper = $this->helper('Magento\Framework\Pricing\Helper\Data'); ?>
+<div class="mgk-configurable-matrix-table">
+    <?php if ($header = $block->getHeader()): ?>
+    <h3 class="table-header"><?= $header ?></h3>
+    <?php endif; ?>
+    <table>
+        <tr>
+            <th class="y-label-cell title-cell">
+                <div class="x-label"><?= $block->getXAttribute()->getLabel() ?></div>
+                <div class="y-label"><?= $block->getYAttribute()->getLabel() ?></div>
+            </th>
+            <?php foreach ($block->getXAttribute()->getOptions() as $xOption) : ?>
+            <th class="y-label-cell"><?= $xOption['store_label'] ?></th>
+            <?php endforeach; ?>
+        </tr>
+        <?php foreach ($block->getYAttribute()->getOptions() as $yOption) : ?>
+        <tr>
+            <td class="x-label-cell"><?= $yOption['store_label'] ?></td>
+            <?php foreach ($block->getXAttribute()->getOptions() as $xOption) : ?>
+            <?php $value = $block->getMatrixValue($xOption['value_index'], $yOption['value_index']); ?>
+            <td><?= (is_numeric($value) ? $_priceHelper->currency($value, true, false) : '') ?></td>
+            <?php endforeach; ?>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<?php endif; ?>
